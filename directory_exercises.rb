@@ -7,9 +7,19 @@ def input_students
   name = gets.chomp
   # while the name is not empty, repeat this code
   until name.empty?
+    # get the persons hobby
+    puts 'What is your hobby?'
+    hobby = gets.chomp
+    # get the persons country of birth
+    puts 'What is your country of birth?'
+    country = gets.chomp
+    # get the persons age
+    puts 'What is your age'
+    age = gets.chomp
     # add the student to the array
-    students << { name: name, cohort: :november }
+    students << { name: name, cohort: :november, hobby: hobby, country: country, age: age }
     puts "Now we have #{students.count} students"
+    puts "Students #{students}"
     # get another name from the user
     name = gets.chomp
   end
@@ -23,11 +33,8 @@ def print_header
 end
 
 def print(students)
-  # print each student that starts with the letter N and number each student with
-  students.each_with_index do |student, idx|
-    if student[:name].chars.first == 'N' && student[:name].length < 12
-      puts "#{idx + 1}. #{student[:name]} (#{student[:cohort]} cohort)"
-    end
+  students.each do |student|
+    puts "#{student[:name]} (#{student[:cohort]} cohort) (hobby:#{student[:hobby]} )(country of birth:#{student[:country]}) (age:#{student[:age]})"
   end
 end
 
