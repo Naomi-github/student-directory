@@ -40,11 +40,15 @@ def input_students
   # while the name is not empty, repeat this code
   until name.empty?
     # add the student to the array
-    @students << { name: name, cohort: :november }
+    info_to_students(name, :november)
     puts "Now we have #{@students.count} students"
     # get another name from the user
     name = STDIN.gets.chomp
   end
+end
+
+def info_to_students(name, _cohort)
+  @students << { name: name, cohort: :november }
 end
 
 def show_students
@@ -84,7 +88,7 @@ def load_students(filename = 'students.csv')
   file = File.open(filename, 'r')
   file.readlines.each do |line|
     name, cohort = line.chomp.split(',')
-    @students << { name: name, cohot: cohort.to_sym }
+    info_to_students(name, cohort)
   end
   file.close
 end
