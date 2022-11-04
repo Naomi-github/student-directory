@@ -9,7 +9,7 @@ def input_students
   until name.empty?
     # add the student to th array
     @students << { name: name, cohort: :november }
-    puts "Now we have #{students.count} students"
+    puts "Now we have #{@students.count} students"
     # get another name from the user
     name = gets.chomp
   end
@@ -26,12 +26,13 @@ def print_menu
   puts '1. Input the students'
   puts '2. Show the students'
   puts '3. Save the list to students.csv'
+  puts '4. Load the list from students.csv'
   puts '9. Exit'
 end
 
 def show_students
   print_header
-  print_students_list
+  print_student_list
   print_footer
 end
 
@@ -43,6 +44,8 @@ def process(selection)
     show_students
   when '3'
     save_students
+  when '4'
+    load_students
   when '9'
     exit
   else
@@ -73,6 +76,15 @@ def save_students
     student_data = [student[:name]], [student[:cohort]]
     csv_line = student_data.join(',')
     file.puts csv_line
+  end
+  file.close
+end
+
+def load_students
+  file = File.open('students.csv', 'r')
+  file.readlines.each do |line|
+    name, cohort = line.chomp.split(',')
+    @students << { name: name, cohot: cohort.to_sym }
   end
   file.close
 end
