@@ -1,14 +1,25 @@
-#Research how the method center() of the String class works. Use it in your code to make the output beautifully aligned.
+# In the input_students method the cohort value is hard-coded. How can you ask for both the name and the cohort? What if one of the values is empty? Can you supply a default value? The input will be given to you as a string? How will you convert it to a symbol? What if the user makes a typo?
 
 def input_students
-  puts 'Please enter the names of the students'
+  months = %i[ january february march april may june july august september october november
+               december ]
+  puts 'Please enter the name of the student'
   puts 'To finish, just hit return twice'
   # create an empty array
   students = []
-  # get the first  name
+  # get the first  name and cohort
   name = gets.chomp
+
+  until months.include?(cohort_input)
+    puts 'Which cohort?'
+    cohort_input = gets.chomp
+    cohort_input = :november if cohort_input.empty?
+  end
   # while the name is not empty, repeat this code
   until name.empty?
+    # add the student to the array
+    students << { name: name, cohort: cohort_input }
+    puts "Now we have #{students.count} students"
     # get the persons hobby
     puts 'What is your hobby?'
     hobby = gets.chomp
@@ -19,7 +30,7 @@ def input_students
     puts 'What is your age'
     age = gets.chomp
     # add the student to the array
-    students << { name: name, cohort: :november, hobby: hobby, country: country, age: age }
+    students << { name: name, cohort: cohort_input.to_sym, hobby: hobby, country: country, age: age }
     puts "Now we have #{students.count} students".center(100)
     # get another name from the user
     name = gets.chomp
