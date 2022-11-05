@@ -88,12 +88,12 @@ def load_students
   puts 'Selected 4: successful'
   puts 'please type the file you want to load the students from'
   filename = gets.chomp
-  file = File.open(filename, 'r')
-  file.readlines.each do |line|
-    name, cohort = line.chomp.split(',')
-    students_data_array(name, cohort)
+  File.open(filename, 'r') do |f|
+    f.readlines.each do |line|
+      name, cohort = line.chomp.split(',')
+      students_data_array(name, cohort)
+    end
   end
-  file.close
 end
 
 def try_load_students
