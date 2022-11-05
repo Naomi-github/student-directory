@@ -28,6 +28,7 @@ def process(selection)
 end
 
 def input_students
+  puts 'Selected 1: successful'
   puts 'Please enter the names of the students'
   puts 'To finish, just hit return twice'
   # get the first  name
@@ -47,6 +48,7 @@ def students_data_array(name, _cohort)
 end
 
 def show_students
+  puts 'Selected 2: successful'
   print_header
   print_student_list
   print_footer
@@ -68,6 +70,7 @@ def print_footer
 end
 
 def save_students
+  puts 'Selected 3; successful'
   # open the file for writing
   file = File.open('students.csv', 'w')
   # iterate over the array of students
@@ -80,6 +83,7 @@ def save_students
 end
 
 def load_students(filename = 'students.csv')
+  puts 'Selected 4: successful'
   file = File.open(filename, 'r')
   file.readlines.each do |line|
     name, cohort = line.chomp.split(',')
