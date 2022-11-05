@@ -17,16 +17,11 @@ end
 
 def process(selection)
   case selection
-  when '1'
-    input_students
-  when '2'
-    show_students
-  when '3'
-    save_students
-  when '4'
-    load_students
-  when '9'
-    exit # this will cause the program to terminate
+  when '1' then input_students
+  when '2' then show_students
+  when '3' then save_students
+  when '4' then load_students
+  when '9' then exit # this will cause the program to terminate
   else
     puts "I don't know what you mean, try again"
   end
@@ -40,14 +35,14 @@ def input_students
   # while the name is not empty, repeat this code
   until name.empty?
     # add the student to the array
-    info_to_students(name, :november)
+    students_data_array(name, :november)
     puts "Now we have #{@students.count} students"
     # get another name from the user
     name = STDIN.gets.chomp
   end
 end
 
-def info_to_students(name, _cohort)
+def students_data_array(name, _cohort)
   @students << { name: name, cohort: :november }
 end
 
@@ -88,7 +83,7 @@ def load_students(filename = 'students.csv')
   file = File.open(filename, 'r')
   file.readlines.each do |line|
     name, cohort = line.chomp.split(',')
-    info_to_students(name, cohort)
+    students_data_array(name, cohort)
   end
   file.close
 end
